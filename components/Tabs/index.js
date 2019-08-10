@@ -56,12 +56,13 @@ axios.get('https://lambda-times-backend.herokuapp.com/topics')
 .then((response) => {
   console.log(response);
 
-// let newTab = topicTab(response.data);
-// topicsTab.appendChild(newTab);
+  const newTab = Object.keys(response).map(i => response[i]);
 
-response.data.topics.forEach( item => {
+newTab.forEach( item => {
+    
     let newTab = topicTab(item)
     topicsTab.appendChild(newTab)
+    
 })
 
 

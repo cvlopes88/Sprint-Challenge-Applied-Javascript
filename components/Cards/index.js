@@ -25,26 +25,25 @@ const containerCard = document.querySelector('.cards-container');
 axios.get('https://lambda-times-backend.herokuapp.com/articles')
 .then((response) => {
   console.log(response);
- newCard = response.data.map(i => x.name)
+ 
+  const newcar = Object.keys(response).map(i => response[i]);
 
-// response.forEach(ite => {
-//     let newCar = component(ite);
-//     containerCard.appendChild(newCar);
-// })
-return {i: []}
+
+
+newcar.forEach(datas => {
+    let newArt = component(datas)
+    containerCard.appendChild(newArt)
+})
+
 
 })
 
 
 
-//   
-//       let newArt = component(ite)
-//       containerCard.appendChild(newArt)
-//   })
-
-.catch( (err) => {
+.catch((err) => {
     console.log(err)
-  });
+  })
+
 
 
 
@@ -67,27 +66,27 @@ return {i: []}
 
 //////////////////////////////////
 
-function component(items){
+function component(item){
 
     const newCard = document.createElement('div');
     newCard.classList.add('card');
 
 const newHead = document.createElement('div');
 newHead.classList.add('headline');
-newHead.textContent = items.headline;
+newHead.textContent = item.headline;
 
 const newAuthor = document.createElement('div');
 newAuthor.classList.add('author');
-newAuthor.textContent = items.authorName;
+newAuthor.textContent = item.authorName;
 
 
 const newImg = document.createElement('img');
 newImg.classList.add('img-container');
-// newImg.src = items.authorPhoto;
+newImg.src = item.authorPhoto;
 
 
 const newName = document.createElement('span');
-newName.textContent = items.authorName;
+newName.textContent = item.authorName;
 
 newCard.appendChild(newImg);
 newCard.appendChild(newName);
